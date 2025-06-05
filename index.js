@@ -12,8 +12,8 @@ const client = new Client({
 });
 
 // Replace these with your actual channel IDs
-const commandChannelId = "1378330848113463337"; // Channel where users send commands
-const announcementChannelIds = ["1379800785071771800", "1379800821406896138"]; // Channels where bot sends announcements
+const commandChannelId = "1380076531258232862"; // Channel where users send commands
+const announcementChannelIds = ["1351678047471796356", "1352428708824350762"]; // Channels where bot sends announcements
 
 const events = []; // Store events in memory
 
@@ -35,7 +35,9 @@ client.on("messageCreate", (message) => {
     announcementChannelIds.forEach((channelId) => {
       const announcementChannel = client.channels.cache.get(channelId);
       if (announcementChannel) {
-        announcementChannel.send("🏓 Pong! This is the announcement channel.");
+        announcementChannel.send(
+          "@everyone 🏓 Pong! This is the announcement channel."
+        );
       }
     });
   }
@@ -50,7 +52,7 @@ client.on("messageCreate", (message) => {
     announcementChannelIds.forEach((channelId) => {
       const announcementChannel = client.channels.cache.get(channelId);
       if (announcementChannel) {
-        announcementChannel.send(reply);
+        announcementChannel.send(`@everyone ${reply}`);
       }
     });
   }
@@ -113,7 +115,7 @@ client.on("messageCreate", (message) => {
       announcementChannelIds.forEach((channelId) => {
         const announcementChannel = client.channels.cache.get(channelId);
         if (announcementChannel) {
-          announcementChannel.send({ embeds: [embed] });
+          announcementChannel.send({ content: "@everyone", embeds: [embed] });
         }
       });
     }
@@ -159,7 +161,7 @@ client.on("messageCreate", (message) => {
           const channel = client.channels.cache.get(channelId);
           if (channel) {
             channel.send(
-              `⏰ Reminder: **${event.name}** is starting at ${event.date} ${event.time} (added by ${event.addedBy})!`
+              `@everyone ⏰ Reminder: **${event.name}** is starting at ${event.date} ${event.time} (added by ${event.addedBy})!`
             );
           }
         });
@@ -215,14 +217,16 @@ client.on("messageCreate", (message) => {
       announcementChannelIds.forEach((channelId) => {
         const announcementChannel = client.channels.cache.get(channelId);
         if (announcementChannel) {
-          announcementChannel.send({ embeds: [embed] });
+          announcementChannel.send({ content: "@everyone", embeds: [embed] });
         }
       });
     } else {
       announcementChannelIds.forEach((channelId) => {
         const announcementChannel = client.channels.cache.get(channelId);
         if (announcementChannel) {
-          announcementChannel.send("📅 No upcoming events at the moment.");
+          announcementChannel.send(
+            "@everyone 📅 No upcoming events at the moment."
+          );
         }
       });
     }
@@ -254,7 +258,7 @@ client.on("messageCreate", (message) => {
     announcementChannelIds.forEach((channelId) => {
       const announcementChannel = client.channels.cache.get(channelId);
       if (announcementChannel) {
-        announcementChannel.send({ embeds: [embed] });
+        announcementChannel.send({ content: "@everyone", embeds: [embed] });
       }
     });
   }
