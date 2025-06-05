@@ -1,5 +1,3 @@
-// index.js
-
 require("dotenv").config(); // Load environment variables from .env
 
 const { Client, GatewayIntentBits, EmbedBuilder } = require("discord.js");
